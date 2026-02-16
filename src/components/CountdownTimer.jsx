@@ -9,6 +9,7 @@ import {
   Box,
 } from "@mui/material";
 import TimerIcon from "@mui/icons-material/Timer";
+import Swal from "sweetalert2";
 
 const CountdownTimer = () => {
   const [minutes, setMinutes] = useState("");
@@ -66,7 +67,12 @@ const CountdownTimer = () => {
             setIsRunning(false);
 
             audio.play();
-            alert("Timer finished!");
+            Swal.fire({
+              icon: "success",
+              title: "Time's up!",
+              text: "The countdown timer has finished.",
+              confirmButtonColor: "#1976d2",
+            });
 
             return 0;
           }

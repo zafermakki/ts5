@@ -9,6 +9,7 @@ import {
   Box,
 } from "@mui/material";
 import AlarmIcon from "@mui/icons-material/Alarm";
+import Swal from "sweetalert2";
 
 const Alarm = () => {
   const [alarmTime, setAlarmTime] = useState("");
@@ -25,7 +26,13 @@ const Alarm = () => {
 
     setIsSet(true);
 
-    alert("Alarm set for " + alarmTime);
+    Swal.fire({
+      icon: "success",
+      title: "Alarm Set",
+      text: `Alarm set for ${alarmTime}`,
+      confirmButtonColor: "#1976d2",
+    });
+    
   };
 
   useEffect(() => {
@@ -41,7 +48,12 @@ const Alarm = () => {
         if (currentTime === alarmTime) {
           audio.play();
 
-          alert("Alarm ringing!");
+          Swal.fire({
+            icon: "warning",
+            title: "Alarm Ringing!",
+            text: "Wake up! Your alarm time has been reached.",
+            confirmButtonColor: "#d32f2f",
+          });          
 
           clearInterval(intervalRef.current);
 
